@@ -1,0 +1,8 @@
+---
+- name: hostname - Set hostname file
+  template: src=etc/hostname.j2 dest=/etc/hostname group=root owner=root mode=0644
+  notify:
+    - hostname - load hostname file
+
+- name: hostname - Set hosts file
+  template: src=etc/hosts.j2 dest=/etc/hosts group=root owner=root mode=0644

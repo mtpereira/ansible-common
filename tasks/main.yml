@@ -1,0 +1,20 @@
+---
+- include_vars: "{{ ansible_os_family }}.yml"
+
+- include: bootstrap.yml tags=bootstrap
+
+- include: repo-deb.yml tags=deb,repository
+  when: ansible_os_family == "Debian"
+
+- include: repo-rpm.yml tags=rpm,repository
+  when: ansible_os_family == "RedHat"
+
+- include: pkg-deb.yml tags=deb,packages
+  when: ansible_os_family == "Debian"
+
+- include: pkg-rpm.yml tags=rpm,packages
+  when: ansible_os_family == "RedHat"
+
+- include: hostname.yml tags=hostname
+
+- include: ntp.yml tags=ntp

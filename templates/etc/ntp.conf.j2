@@ -1,0 +1,10 @@
+restrict 127.0.0.1
+restrict ::1
+restrict -4 default kod nomodify notrap nopeer noquery
+restrict -6 default kod nomodify notrap nopeer noquery
+{% for option, value in common_ntp_options.items() %}
+{{ option }} {{ value }}
+{% endfor %}
+{% for server in common_ntp_servers %}
+server {{ server }}
+{% endfor %}

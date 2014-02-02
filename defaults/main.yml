@@ -1,0 +1,43 @@
+---
+# tasks/hostname.yml
+common_hostname: "ansible"
+common_hostname_domain: "domain"
+
+# tasks/ntp.yml
+common_ntp_servers: [ '3.pt.pool.ntp.org', '0.europe.pool.ntp.org', '3.europe.pool.ntp.org' ]
+common_ntp_options: { tinker: 'panic 0', driftfile: '/var/lib/ntp/ntp.drift' }
+
+# tasks/pkg-*.yml
+common_pkg_state: "installed"
+common_pkg_list_deb:
+  - vim-nox
+  - tcpdump
+  - netcat-traditional
+  - screen
+  - htop
+  - tmux
+  - sysv-rc-conf
+
+common_pkg_list_rpm:
+  - vim-enhanced
+  - tcpdump
+  - nc
+  - screen
+  - htop
+  - tmux
+
+# tasks/repo-*.yml
+# set the following variables to trigger these tasks
+#common_repo_deb:
+#  - { url: 'http://ftp.rnl.ist.utl.pt/pub/debian', components: 'main' }
+#
+#common_repo_deb_keys:
+#  - { url: 'https://ftp-master.debian.org/keys/archive-key-6.0.asc', id: '473041FA' }
+#
+# for rpm repos, put your .repo in files/
+# common_repo_rpm:
+#   - etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+#
+# common_repo_rpm_keys:
+#   - http://apt.sw.be/RPM-GPG-KEY.dag.txt
+#   - /path/to/key.gpg

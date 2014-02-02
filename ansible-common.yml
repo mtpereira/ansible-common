@@ -1,0 +1,18 @@
+---
+- hosts: all
+  sudo: yes
+
+  vars_files:
+    - defaults/main.yml
+
+  vars:
+    common_repo_deb:
+      - { url: 'http://ftp.rnl.ist.utl.pt/pub/debian', components: 'main' }
+    common_repo_deb_keys:
+      - { url: 'https://ftp-master.debian.org/keys/archive-key-6.0.asc', id: '473041FA' }
+
+  handlers:
+    - include: handlers/main.yml
+
+  tasks:
+    - include: tasks/main.yml

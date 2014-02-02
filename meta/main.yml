@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Manuel Tiago Pereira
+  description: Ansible role for host basic and common configuration.
+  license: MIT
+  min_ansible_version: 1.4
+  platforms:
+  - name: Debian
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  - name: EL
+    - all
+  categories:
+    - packaging
+dependencies: []
+

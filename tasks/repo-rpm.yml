@@ -1,0 +1,10 @@
+---
+- name: repo - Add custom repositories in RedHat
+  copy: src={{ item }} state=present dest=/etc/yum.repos.d/{{ item | basename }}
+  with_items: common_repo_rpm
+  when: common_repo_rpm is defined
+
+- name: repo - Add custom repositories keys in RedHat
+  rpm_key: key={{ item }} state=present
+  with_items: common_repo_rpm_keys
+  when: common_repo_rpm_keys is defined

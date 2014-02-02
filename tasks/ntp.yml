@@ -1,0 +1,16 @@
+---
+- name: ntp - Install (state={{ common_pkg_state }}) ntp in Debian
+  apt: pkg=ntp state={{ common_pkg_state }}
+  when: ansible_os_family == 'Debian'
+
+- name: ntp - Install (state={{ common_pkg_state }}) ntp in RedHat
+  yum: pkg=ntp state={{ common_pkg_state }}
+  when: ansible_os_family == 'RedHat'
+
+- name: ntp - Configure ntp
+  template: src=etc/ntp.conf.j2 dest=/etc/ntp.conf
+  notify:
+  - ntp - restart ntpd
+
+- name: ntp - Enable ntp
+  service: name={{ common_ntp_service }} state=running enabled=yes
