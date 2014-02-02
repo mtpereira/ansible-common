@@ -15,6 +15,6 @@ galaxy_info:
     versions:
     - all
   categories:
-    - packaging
+    - system
 dependencies: []
 
