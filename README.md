@@ -16,7 +16,8 @@ At the moment, it provides means to:
 
 TODO:
 
-* Configure swap if necessary.
+* Configure swap if necessary;
+* Test on Centos.
 
 Requirements
 ------------
@@ -63,7 +64,7 @@ Repositories management variables:
 Testing
 -------
 
-For testing purposes, a Vagrantfile was added. Simple run ```vagrant up``` in your working copy dir to get a Debian host up and provisioned with ```ansible-common.yml``` playbook.
+For testing purposes, a Vagrantfile was added. Simply run ```vagrant up``` in your working copy dir to get a Debian host up and provisioned with ```ansible-common.yml``` playbook. **At the moment there are no tests defined for EL-based systems!**
 
 License
 -------
