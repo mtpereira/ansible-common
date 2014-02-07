@@ -17,6 +17,7 @@ common_pkg_list_deb:
   - htop
   - tmux
   - sysv-rc-conf
+  - git
 
 common_pkg_list_rpm:
   - vim-enhanced
@@ -25,6 +26,7 @@ common_pkg_list_rpm:
   - screen
   - htop
   - tmux
+  - git
 
 # tasks/repo-*.yml
 # set the following variables to trigger these tasks
