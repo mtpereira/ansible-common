@@ -1,9 +1,9 @@
 ---
-- name: ntp - Install (state={{ common_pkg_state }}) ntp in Debian
+- name: ntp - Install ntp in Debian
   apt: pkg=ntp state={{ common_pkg_state }}
   when: ansible_os_family == 'Debian'
 
-- name: ntp - Install (state={{ common_pkg_state }}) ntp in RedHat
+- name: ntp - Install ntp in RedHat
   yum: pkg=ntp state={{ common_pkg_state }}
   when: ansible_os_family == 'RedHat'
 

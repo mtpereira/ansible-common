@@ -1,4 +1,5 @@
-- name: bootstrap - install (state={{ common_pkg_state }}) ansible dependencies
+---
+- name: bootstrap - install ansible dependencies
   apt: pkg={{ item }} state={{ common_pkg_state }} update_cache=yes cache_valid_time=3600
   with_items:
   - lsb-release
