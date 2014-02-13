@@ -74,6 +74,6 @@ MIT
 Author Information
 ------------------
 
-[GitHub project page](https://github.com/mtpereira/ansible-passenger)
+[GitHub project page](https://github.com/mtpereira/ansible-common)
 
 [Manuel Tiago Pereira](http://mtpereira.github.io)
