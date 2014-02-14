@@ -1,5 +1,6 @@
 ---
-- include_vars: "{{ ansible_os_family }}.yml"
+- name: "Include OS variables"
+  include_vars: "{{ ansible_os_family }}.yml"
 
 - include: bootstrap.yml tags=bootstrap
 
