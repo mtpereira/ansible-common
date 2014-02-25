@@ -7,6 +7,8 @@ common_hostname_domain: "domain"
 common_ntp_servers: [ '3.pt.pool.ntp.org', '0.europe.pool.ntp.org', '3.europe.pool.ntp.org' ]
 common_ntp_options: { tinker: 'panic 0', driftfile: '/var/lib/ntp/ntp.drift' }
 
+common_timezone: "Etc/UTC"
+
 # tasks/pkg-*.yml
 common_pkg_state: "installed"
 common_pkg_list_deb:
