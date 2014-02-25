@@ -19,3 +19,6 @@
 - include: hostname.yml tags=hostname
 
 - include: ntp.yml tags=ntp
+
+- include: swap.yml tags=swap
+  when: ansible_swaptotal_mb == 0

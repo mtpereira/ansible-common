@@ -1,0 +1,20 @@
+---
+- name: swap - create path
+  command: mkdir -p /swap
+  sudo: yes
+
+- name: swap - create swap file
+  command: dd if=/dev/zero of=/swap/swap.block bs=1M count={{ ansible_memtotal_mb }}
+  sudo: yes
+
+- name: swap - make swap
+  command: mkswap /swap/swap.block
+  sudo: yes
+
+- name: swap - swap on
+  command: swapon /swap/swap.block
+  sudo: yes
+
+- name: swap - add to fstab
+  mount: name=swap src=/swap/swap.block fstype=swap state=present
+  sudo: yes
