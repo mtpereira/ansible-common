@@ -4,7 +4,7 @@
   when: ansible_os_family == 'Debian'
 
 - name: ntp - Install ntp in RedHat
-  yum: pkg=ntp state={{ common_pkg_state }}
+  yum: pkg=ntpd state={{ common_pkg_state }}
   when: ansible_os_family == 'RedHat'
 
 - name: ntp - Configure ntp
