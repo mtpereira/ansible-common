@@ -9,14 +9,16 @@ There were made no assumptions regarding the user that is running these tasks.
 
 At the moment, it provides means to:
 
+* Install ansible dependencies;
 * Add custom Debian or EL repositories;
 * Install a list of packages;
 * Set hostname;
-* Configure NTP.
+* Configure timezone;
+* Configure NTP;
+* Add swap file if there's none mounted.
 
 TODO:
 
-* Configure swap if necessary;
 * Test on Centos.
 
 Requirements
@@ -27,20 +29,8 @@ None.
 Role Variables
 --------------
 
-Hostname related variables:
-* `common_hostname`: Set hostname. Defaults to "ansible".
-* `common_hostname_domain`: Set host's domain to be used in /etc/hosts. Defaults to "domain".
+Repositories management:
 
-NTP configuration variables:
-* `common_ntp_servers`: Servers to be used by NTP to sync time. Defaults to the following servers, which are Portuguese NTP servers (taken from http://www.pool.ntp.org/zone/pt): '3.pt.pool.ntp.org', '0.europe.pool.ntp.org', '3.europe.pool.ntp.org'.
-* `common_ntp_options`: (Optional) Some additional options for NTP. It only takes effect when set.
-
-Packages installation variables:
-* `common_pkg_state`: Specifies if this role will garantee that the packages are installed or installed and updated. Possible values: `installed` and `latest`. Defaults to `installed`. **Applies to all action that install packages in this role!**
-* `common_pkg_list_deb`: (Optional) List of packages to be installed in a Debian server. It only takes effect when set.
-* `common_pkg_list_rpm`: (Optional) List of packages to be installed in a Debian server. It only takes effect when set.
-
-Repositories management variables:
 * `common_repo_deb`: (Optional) List of Debian repositories to be added. Format is:
 ```
 - { url: 'http://ftp.rnl.ist.utl.pt/pub/debian', components: 'main contrib' }
@@ -60,6 +50,26 @@ Repositories management variables:
 # add by local file
 - /path/to/key.gpg
 ```
+
+Packages:
+
+* `common_pkg_state`: Specifies if this role will garantee that the packages are installed or installed and updated. Possible values: `installed` and `latest`. Defaults to `installed`. **Applies to all action that install packages in this role!**
+* `common_pkg_list_deb`: (Optional) List of packages to be installed in a Debian server. It only takes effect when set.
+* `common_pkg_list_rpm`: (Optional) List of packages to be installed in a Debian server. It only takes effect when set.
+
+Hostname:
+
+* `common_hostname`: Set hostname. Defaults to "ansible".
+* `common_hostname_domain`: Set host's domain to be used in /etc/hosts. Defaults to "domain".
+
+Timezone:
+
+* `common_timezone`: Timezone to be configured. Defaults to `Etc/UTC`.
+
+NTP:
+
+* `common_ntp_servers`: Servers to be used by NTP to sync time. Defaults to the following servers, which are Portuguese NTP servers (taken from http://www.pool.ntp.org/zone/pt): '3.pt.pool.ntp.org', '0.europe.pool.ntp.org', '3.europe.pool.ntp.org'.
+* `common_ntp_options`: (Optional) Some additional options for NTP. It only takes effect when set.
 
 Testing
 -------
