@@ -1,3 +1,3 @@
 ---
-- name: timezone - configure
+- name: timezone - configure in Debian
   shell: echo {{ common_timezone }} > /etc/timezone; dpkg-reconfigure --frontend noninteractive tzdata

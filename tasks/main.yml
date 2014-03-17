@@ -18,6 +18,12 @@
 
 - include: hostname.yml tags=hostname
 
+- include: timezone-debian.yml tags=deb,timezone
+  when: ansible_os_family == "Debian"
+
+- include: timezone-redhat.yml tags=rpm,timezone
+  when: ansible_os_family == "RedHat"
+
 - include: ntp.yml tags=ntp
 
 - include: swap.yml tags=swap

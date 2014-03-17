@@ -1,0 +1,3 @@
+---
+- name: timezone - configure in RedHat
+  command: cp -f {{ common_timezone }} /etc/localtime
