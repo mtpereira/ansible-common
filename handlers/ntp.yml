@@ -1,3 +1,6 @@
 ---
 - name: ntp - restart ntpd
-  service: name={{ common_ntp_service }} state=restarted
+  service: name=ntpd state=restarted
+
+- name: ntp - restart ntp
+  service: name=ntp state=restarted

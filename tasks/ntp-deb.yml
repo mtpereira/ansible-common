@@ -5,7 +5,7 @@
 - name: ntp - Configure ntp
   template: src=etc/ntp.conf.j2 dest=/etc/ntp.conf
   notify:
-  - ntp - restart ntpd
+  - ntp - restart ntp
 
 - name: ntp - Enable ntp
   service: name=ntp state=running enabled=yes
