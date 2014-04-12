@@ -1,0 +1,11 @@
+---
+- name: ntp - Install ntp in Debian
+  apt: pkg=ntp state={{ common_pkg_state }}
+
+- name: ntp - Configure ntp
+  template: src=etc/ntp.conf.j2 dest=/etc/ntp.conf
+  notify:
+  - ntp - restart ntpd
+
+- name: ntp - Enable ntp
+  service: name=ntp state=running enabled=yes

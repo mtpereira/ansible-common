@@ -21,7 +21,11 @@
 - include: timezone-redhat.yml tags=rpm,timezone
   when: ansible_os_family == "RedHat"
 
-- include: ntp.yml tags=ntp
+- include: ntp-deb.yml tags=ntp,deb
+  when: ansible_os_family == "Debian"
+
+- include: ntp-rpm.yml tags=ntp,rpm
+  when: ansible_os_family == "RedHat"
 
 - include: swap.yml tags=swap
   when: ansible_swaptotal_mb == 0
