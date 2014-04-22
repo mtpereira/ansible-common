@@ -33,7 +33,7 @@ common_pkg_list_rpm:
 # tasks/repo-*.yml
 # set the following variables to trigger these tasks
 #common_repo_deb:
-#  - { url: 'http://ftp.rnl.ist.utl.pt/pub/debian', components: 'main' }
+#  - { url: 'http://ftp.rnl.ist.utl.pt/pub/debian', codename: 'wheezy', components: 'main' }
 #
 #common_repo_deb_keys:
 #  - { url: 'https://ftp-master.debian.org/keys/archive-key-6.0.asc', id: '473041FA' }

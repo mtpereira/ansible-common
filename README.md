@@ -33,7 +33,7 @@ Repositories management:
 
 * `common_repo_deb`: (Optional) List of Debian repositories to be added. Format is:
 ```
-- { url: 'http://ftp.rnl.ist.utl.pt/pub/debian', components: 'main contrib' }
+- { url: 'http://ftp.rnl.ist.utl.pt/pub/debian', codename: 'wheezy', components: 'main contrib' }
 ```
 * `common_repo_deb_keys`: (Optional) List of Debian repository keys to be added. It only takes effect when set. Format is:
 ```

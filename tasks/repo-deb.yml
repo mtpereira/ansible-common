@@ -1,6 +1,6 @@
 ---
 - name: repo - Add custom repositories in Debian
-  apt_repository: repo="deb {{ item.url }} {{ ansible_lsb.codename }} {{ item.components }}" state=present update_cache=yes
+  apt_repository: repo="deb {{ item.url }} {{ item.codename }} {{ item.components }}" state=present update_cache=yes
   with_items: common_repo_deb
   when: common_repo_deb is defined
 
