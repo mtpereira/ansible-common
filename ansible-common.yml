@@ -7,7 +7,7 @@
 
   vars:
     common_repo_deb:
-      - { url: 'http://ftp.rnl.ist.utl.pt/pub/debian', components: 'main' }
+      - { url: 'http://ftp.rnl.ist.utl.pt/pub/debian', codename: "wheezy", components: 'main' }
     common_repo_deb_keys:
       - { url: 'https://ftp-master.debian.org/keys/archive-key-6.0.asc', id: '473041FA' }
 
@@ -15,4 +15,14 @@
     - include: handlers/main.yml
 
   tasks:
+    - name: test - remove swap if present
+      command: swapoff -a
+      when: ansible_swaptotal_mb != 0
+      register: common_test_swapoff
+      sudo: yes
+
+    - name: test - regather facts after swap off
+      action: setup
+      when: common_test_swapoff.changed
+
     - include: tasks/main.yml

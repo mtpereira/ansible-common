@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
 
     ap.vm.provision :ansible do |ansible|
       ansible.playbook = "#{vmname}.yml"
-      ansible.verbose = false
+      ansible.verbose = true
     end
   end
 end

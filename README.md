@@ -71,6 +71,12 @@ NTP:
 * `common_ntp_servers`: Servers to be used by NTP to sync time. Defaults to the following servers, which are Portuguese NTP servers (taken from http://www.pool.ntp.org/zone/pt): '3.pt.pool.ntp.org', '0.europe.pool.ntp.org', '3.europe.pool.ntp.org'.
 * `common_ntp_options`: (Optional) Some additional options for NTP. It only takes effect when set.
 
+Swap:
+
+* `common_swap`: Enables swap file creation. Defaults to `yes`.
+* `common_swap_size`: Defines swap size in MB. Defaults to `ansible_memtotal_mb`.
+* `common_swap_fstab`: Defines whether or not to add swap to fstab. Defaults to `yes`.
+
 Testing
 -------
 

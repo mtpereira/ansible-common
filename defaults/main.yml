@@ -9,6 +9,11 @@ common_ntp_options: { tinker: 'panic 0', driftfile: '/var/lib/ntp/ntp.drift' }
 
 common_timezone: "Etc/UTC"
 
+# tasks/swap.yml
+common_swap: yes
+common_swap_size: "{{ ansible_memtotal_mb }}"
+common_swap_fstab: no
+
 # tasks/pkg-*.yml
 common_pkg_state: "installed"
 common_pkg_list_deb:

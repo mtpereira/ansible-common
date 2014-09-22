@@ -1,10 +1,16 @@
 ---
 - name: swap - create path
-  command: mkdir -p /swap
+  file:
+    dest: /swap
+    owner: root
+    group: root
+    mode: 0600
+    state: directory
   sudo: yes
 
 - name: swap - create swap file
-  command: dd if=/dev/zero of=/swap/swap.block bs=1M count={{ ansible_memtotal_mb }}
+  command: dd if=/dev/zero of=/swap/swap.block bs=1M count={{ common_swap_size }}
+    creates=/swap/swap.block
   sudo: yes
 
 - name: swap - make swap
@@ -16,5 +22,10 @@
   sudo: yes
 
 - name: swap - add to fstab
-  mount: name=swap src=/swap/swap.block fstype=swap state=present
+  mount:
+    name: swap
+    src: /swap/swap.block
+    fstype: swap
+    state: present
+  when: common_swap_fstab
   sudo: yes

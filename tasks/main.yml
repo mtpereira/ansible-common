@@ -1,31 +1,32 @@
 ---
-- include: bootstrap.yml tags=bootstrap
+- include: bootstrap.yml tags=common_bootstrap
 
-- include: repo-deb.yml tags=deb,repository
+- include: repo-deb.yml tags=common_deb,common_repository
   when: ansible_os_family == "Debian"
 
-- include: repo-rpm.yml tags=rpm,repository
+- include: repo-rpm.yml tags=common_rpm,common_repository
   when: ansible_os_family == "RedHat"
 
-- include: pkg-deb.yml tags=deb,packages
+- include: pkg-deb.yml tags=common_deb,common_packages
   when: ansible_os_family == "Debian"
 
-- include: pkg-rpm.yml tags=rpm,packages
+- include: pkg-rpm.yml tags=common_rpm,common_packages
   when: ansible_os_family == "RedHat"
 
-- include: hostname.yml tags=hostname
+- include: hostname.yml tags=common_hostname
 
-- include: timezone-debian.yml tags=deb,timezone
+- include: timezone-debian.yml tags=common_deb,common_timezone
   when: ansible_os_family == "Debian"
 
-- include: timezone-redhat.yml tags=rpm,timezone
+- include: timezone-redhat.yml tags=common_rpm,common_timezone
   when: ansible_os_family == "RedHat"
 
-- include: ntp-deb.yml tags=ntp,deb
+- include: ntp-deb.yml tags=common_ntp,common_deb
   when: ansible_os_family == "Debian"
 
-- include: ntp-rpm.yml tags=ntp,rpm
+- include: ntp-rpm.yml tags=common_ntp,common_rpm
   when: ansible_os_family == "RedHat"
 
-- include: swap.yml tags=swap
-  when: ansible_swaptotal_mb == 0
+- include: swap.yml tags=common_swap
+  sudo: yes
+  when: ansible_swaptotal_mb == 0 and common_swap
