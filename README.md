@@ -76,6 +76,7 @@ Swap:
 * `common_swap`: Enables swap file creation. Defaults to `yes`.
 * `common_swap_size`: Defines swap size in MB. Defaults to `ansible_memtotal_mb`.
 * `common_swap_fstab`: Defines whether or not to add swap to fstab. Defaults to `yes`.
+* `common_swap_path`: Defines the path for the swap file. Defaults to `/swap`.
 
 Testing
 -------

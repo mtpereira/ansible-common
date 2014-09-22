@@ -13,6 +13,7 @@ common_timezone: "Etc/UTC"
 common_swap: yes
 common_swap_size: "{{ ansible_memtotal_mb }}"
 common_swap_fstab: no
+common_swap_path: "/swap"
 
 # tasks/pkg-*.yml
 common_pkg_state: "installed"
