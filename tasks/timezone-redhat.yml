@@ -1,3 +1,9 @@
 ---
 - name: timezone - configure in RedHat
-  command: cp -f {{ common_timezone }} /etc/localtime
+  file:
+    src: /usr/share/zoneinfo/"{{ common_timezone }}"
+    dest: /etc/localtime
+    owner: root
+    group: root
+    mode: 0644
+    stat: link
