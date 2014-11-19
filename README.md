@@ -35,6 +35,10 @@ Repositories management:
 ```
 - { url: 'http://ftp.rnl.ist.utl.pt/pub/debian', codename: 'wheezy', components: 'main contrib' }
 ```
+* `common_repo_ppa`: (Optional) List of Ubuntu PPA repositories to be added. Format is:
+```
+- repo: 'ppa:ppa-user/ppa-name'
+```
 * `common_repo_deb_keys`: (Optional) List of Debian repository keys to be added. It only takes effect when set. Format is:
 ```
 - { url: 'https://ftp-master.debian.org/keys/archive-key-6.0.asc', key: '473041FA' }
