@@ -17,10 +17,6 @@
   command: mkswap {{ common_swap_path }}/swap.block
   sudo: yes
 
-- name: swap - swap on
-  command: swapon -a
-  sudo: yes
-
 - name: swap - add to fstab
   mount:
     name: swap
@@ -28,4 +24,8 @@
     fstype: swap
     state: present
   when: common_swap_fstab
+  sudo: yes
+
+- name: swap - swap on
+  command: swapon -a
   sudo: yes
