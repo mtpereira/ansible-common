@@ -1,4 +1,12 @@
 ---
 - name: pkg - Install common packages in RedHat
-  yum: name={{ item }} state={{ common_pkg_state }}
+  yum:
+    name: "{{ item }}"
+    state: "{{ common_pkg_state }}"
   with_items: common_pkg_list_rpm
+
+- name: pkg - Remove packages in RedHat
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items: common_pkg_remove_list_rpm

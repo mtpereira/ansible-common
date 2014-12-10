@@ -1,4 +1,15 @@
 ---
 - name: pkg - Install common packages in Debian
-  apt: name={{ item }} state={{ common_pkg_state }} update_cache=yes cache_valid_time=3600
+  apt:
+    name: "{{ item }}"
+    state: "{{ common_pkg_state }}"
+    update_cache: yes
+    cache_valid_time: 3600
   with_items: common_pkg_list_deb
+
+- name: pkg - Remove packages in Debian
+  apt:
+    name: "{{ item }}"
+    state: absent
+    purge: "{{ common_pkg_purge }}"
+  with_items: common_pkg_remove_list_deb

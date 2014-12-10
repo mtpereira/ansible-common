@@ -59,7 +59,10 @@ Packages:
 
 * `common_pkg_state`: Specifies if this role will garantee that the packages are installed or installed and updated. Possible values: `installed` and `latest`. Defaults to `installed`. **Applies to all action that install packages in this role!**
 * `common_pkg_list_deb`: (Optional) List of packages to be installed in a Debian server. It only takes effect when set.
-* `common_pkg_list_rpm`: (Optional) List of packages to be installed in a Debian server. It only takes effect when set.
+* `common_pkg_remove_list_deb`: (Optional) List of packages to be removed in a Debian server. It only takes effect when set.
+* `common_pkg_list_rpm`: (Optional) List of packages to be installed in a RedHat server. It only takes effect when set.
+* `common_pkg_remove_list_rpm`: (Optional) List of packages to be installed in a RedHat server. It only takes effect when set.
+* `common_pkg_purge`: (Optional) Whether to purge or not packages of `common_pkg_remove_list_deb` in a Debian server. Defaults to `no`.
 
 Hostname:
 
