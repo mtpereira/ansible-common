@@ -30,3 +30,5 @@
 - include: swap.yml tags=common_swap
   sudo: yes
   when: ansible_swaptotal_mb == 0 and common_swap
+
+- meta: flush_handlers
