@@ -27,6 +27,9 @@
 - include: ntp-rpm.yml tags=common_ntp,common_rpm
   when: ansible_os_family == "RedHat"
 
+- include: filesystems.yml tags=common_filesystems
+  when: common_filesystems is defined and common_filesystems != []
+
 - include: swap.yml tags=common_swap
   sudo: yes
   when: ansible_swaptotal_mb == 0 and common_swap

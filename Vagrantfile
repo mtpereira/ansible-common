@@ -12,6 +12,8 @@ Vagrant.configure("2") do |config|
     ap.vm.provider "virtualbox" do |v|
       v.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       v.customize ["modifyvm", :id, "--memory", 512]
+      v.customize ["createhd", "--filename", "common_filesystems_disk.vdi", "--size", 50]
+      v.customize ["storageattach", :id, "--storagectl", "IDE Controller", "--port", 1, "--device", 0, "--type", "hdd", "--medium", "common_filesystems_disk.vdi"]
     end
 
     ap.vm.network :private_network, ip: "10.0.0.40"

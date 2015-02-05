@@ -16,6 +16,13 @@
         id: '473041FA'
     common_pkg_remove_list_deb:
       - exim4
+    common_swap_size: "50"
+    common_filesystems:
+      - mount: /mnt/test
+        device: /dev/sdb
+        type: ext4
+        mount_opts: "rw"
+        passno: "0 0"
 
   handlers:
     - include: handlers/main.yml
@@ -32,3 +39,18 @@
       when: common_test_swapoff.changed
 
     - include: tasks/main.yml
+
+    - name: test - write a test file to mount point
+      copy:
+        dest: /mnt/test/testing.txt
+        content: "testing"
+
+    - name: test - read contents of test file
+      command: cat /mnt/test/testing.txt
+      register: common_filesystem_test_file
+
+    - name: test - assert that test file contents are ok
+      assert:
+        that:
+          - "'testing' in common_filesystem_test_file.stdout"
+
