@@ -81,12 +81,12 @@ NTP:
 Filesystems:
 
 * `common_filesystems`: (Optional) Create listed filesystems and mounts them according to provided options. This variable is a list of dictionaries, with the following structure:
-** `fstype`: Filesystem type (`ext4`, `xfs`, etc).
-** `device`: Device where the filesystem will be created.
-** `opts`: Options for filesystem creation (`mkfs` options).
-** `mount`: Mount point path.
-** `mount_opts`: Mount options for `/etc/fstab`.
-** `passno`: Mount filesystem check options.
+* `fstype`: Filesystem type (`ext4`, `xfs`, etc).
+* `device`: Device where the filesystem will be created.
+* `opts`: Options for filesystem creation (`mkfs` options).
+* `mount`: Mount point path.
+* `mount_opts`: Mount options for `/etc/fstab`.
+* `passno`: Mount filesystem check options.
 
 For more information, run `ansible-doc filesystem` and `ansible-doc mount`.
 
