@@ -78,6 +78,18 @@ NTP:
 * `common_ntp_servers`: Servers to be used by NTP to sync time. Defaults to the following servers, which are Portuguese NTP servers (taken from http://www.pool.ntp.org/zone/pt): '3.pt.pool.ntp.org', '0.europe.pool.ntp.org', '3.europe.pool.ntp.org'.
 * `common_ntp_options`: (Optional) Some additional options for NTP. It only takes effect when set.
 
+Filesystems:
+
+* `common_filesystems`: (Optional) Create listed filesystems and mounts them according to provided options. This variable is a list of dictionaries, with the following structure:
+** `fstype`: Filesystem type (`ext4`, `xfs`, etc).
+** `device`: Device where the filesystem will be created.
+** `opts`: Options for filesystem creation (`mkfs` options).
+** `mount`: Mount point path.
+** `mount_opts`: Mount options for `/etc/fstab`.
+** `passno`: Mount filesystem check options.
+
+For more information, run `ansible-doc filesystem` and `ansible-doc mount`.
+
 Swap:
 
 * `common_swap`: Enables swap file creation. Defaults to `yes`.
