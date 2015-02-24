@@ -1,0 +1,20 @@
+---
+- name: filesystems - create filesystems
+  filesystem:
+    fstype: "{{ item.type }}"
+    dev: "{{ item.device }}"
+    opts: "{{ item.opts | default(omit) }}"
+  with_items: common_filesystems
+  sudo: yes
+
+- name: filesystems - mount and set on fstab
+  mount:
+    name: "{{ item.mount }}"
+    src: "{{ item.device }}"
+    fstype: "{{ item.type }}"
+    opts: "{{ item.mount_opts | default(omit) }}"
+    passno: "{{ item.passno | default(omit) }}"
+    state: mounted
+  with_items: common_filesystems
+  sudo: yes
+
