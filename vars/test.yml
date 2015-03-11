@@ -1,0 +1,54 @@
+---
+common_hostname: "ansible"
+common_hostname_domain: "domain"
+
+common_ntp_servers: [ '3.pt.pool.ntp.org', '0.europe.pool.ntp.org', '3.europe.pool.ntp.org' ]
+common_ntp_options: { tinker: 'panic 0', driftfile: '/var/lib/ntp/ntp.drift' }
+
+common_timezone: "Etc/UTC"
+
+common_swap: yes
+common_swap_size: "{{ ansible_memtotal_mb }}"
+common_swap_fstab: yes
+common_swap_path: "/swap"
+
+common_pkg_state: "installed"
+common_pkg_purge: no
+common_pkg_list_deb:
+  - vim-nox
+  - tcpdump
+  - netcat-traditional
+  - screen
+  - htop
+  - tmux
+  - sysv-rc-conf
+  - git
+
+common_pkg_list_rpm:
+  - vim-enhanced
+  - tcpdump
+  - nc
+  - screen
+  - htop
+  - tmux
+  - git
+
+common_pkg_purge: yes
+common_repo_deb:
+  - url: 'http://ftp.rnl.ist.utl.pt/pub/debian'
+    codename: "wheezy"
+    components: 'main'
+common_repo_deb_keys:
+  - url: 'https://ftp-master.debian.org/keys/archive-key-6.0.asc'
+    id: '473041FA'
+common_pkg_remove_list_deb:
+  - exim4
+common_swap_size: 50
+common_swap_fstab: yes
+common_filesystems:
+  - mount: /mnt/test
+    device: /dev/sdb
+    type: ext4
+    mount_opts: "rw"
+    passno: "0 0"
+

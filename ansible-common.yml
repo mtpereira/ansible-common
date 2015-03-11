@@ -3,40 +3,27 @@
   sudo: yes
 
   vars_files:
-    - defaults/main.yml
-
-  vars:
-    common_pkg_purge: yes
-    common_repo_deb:
-      - url: 'http://ftp.rnl.ist.utl.pt/pub/debian'
-        codename: "wheezy"
-        components: 'main'
-    common_repo_deb_keys:
-      - url: 'https://ftp-master.debian.org/keys/archive-key-6.0.asc'
-        id: '473041FA'
-    common_pkg_remove_list_deb:
-      - exim4
-    common_swap_size: "50"
-    common_filesystems:
-      - mount: /mnt/test
-        device: /dev/sdb
-        type: ext4
-        mount_opts: "rw"
-        passno: "0 0"
+    - vars/test.yml
 
   handlers:
     - include: handlers/main.yml
 
   tasks:
-    - name: test - remove swap if present
+    - name: test - umount swap if present
       command: swapoff -a
       when: ansible_swaptotal_mb != 0
       register: common_test_swapoff
       sudo: yes
 
+    - name: test - remove swap if present
+      lineinfile:
+        dest: /etc/fstab
+        line: "/dev/mapper/packer--virtualbox-swap_1 none            swap    sw              0       0"
+        state: absent
+      sudo: yes
+
     - name: test - regather facts after swap off
       action: setup
-      when: common_test_swapoff.changed
 
     - include: tasks/main.yml
 
@@ -53,4 +40,10 @@
       assert:
         that:
           - "'testing' in common_filesystem_test_file.stdout"
+
+    - name: test - regather facts after swap on
+      action: setup
+
+    - name: test - run swap again for indempotency check
+      include: tasks/swap.yml
 
