@@ -92,6 +92,9 @@ For more information, run `ansible-doc filesystem` and `ansible-doc mount`.
 
 Swap:
 
+Configures a swap file. If there already exists a mounted swap (file or partition) and its size is approximately the same as `common_swap_size` (in MB), it won't perform any action.
+The check is not for the exact same size because the actual mounted size partition is slight smaller than the swap file/partion size. As such, we check for a difference of at least 10%.
+
 * `common_swap`: Enables swap file creation. Defaults to `yes`.
 * `common_swap_size`: Defines swap size in MB. Defaults to `ansible_memtotal_mb`.
 * `common_swap_fstab`: Defines whether or not to add swap to fstab. Defaults to `yes`.

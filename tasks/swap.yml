@@ -1,4 +1,13 @@
 ---
+- name: swap - calculate difference between existing and configured size
+  set_fact:
+    common_swap_check_diff: "{{ (common_swap_size - ansible_swaptotal_mb) | abs }}"
+    common_swap_check_minimum_diff: "{{ common_swap_size * 0.10 | round(1, 'ceil') }}"
+
+- name: swap - check if it is necessary to recreate it
+  set_fact:
+    common_swap_check_recreate: "{{ common_swap_check_diff > common_swap_check_minimum_diff }}"
+
 - name: swap - create path
   file:
     dest: "{{ common_swap_path }}"
@@ -6,15 +15,23 @@
     group: root
     mode: 0600
     state: directory
+  when: common_swap_check_recreate | bool
+  sudo: yes
+
+- name: swap - disable swap
+  command: swapoff --all
+  ignore_errors: yes
+  when: common_swap_check_recreate | bool
   sudo: yes
 
 - name: swap - create swap file
   command: dd if=/dev/zero of={{ common_swap_path }}/swap.block bs=1M count={{ common_swap_size }}
-    creates="{{ common_swap_path }}/swap.block"
+  when: common_swap_check_recreate | bool
   sudo: yes
 
 - name: swap - make swap
   command: mkswap {{ common_swap_path }}/swap.block
+  when: common_swap_check_recreate | bool
   sudo: yes
 
 - name: swap - add to fstab
@@ -23,9 +40,11 @@
     src: "{{ common_swap_path }}/swap.block"
     fstype: swap
     state: present
-  when: common_swap_fstab
+  when: common_swap_check_recreate | bool and common_swap_fstab
   sudo: yes
 
 - name: swap - swap on
-  command: swapon -a
+  command: swapon --all
+  when: common_swap_check_recreate | bool
   sudo: yes
+
