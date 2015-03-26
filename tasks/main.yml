@@ -34,3 +34,7 @@
   when: common_swap
 
 - meta: flush_handlers
+
+- name: main - Regather facts
+  action: setup
+
