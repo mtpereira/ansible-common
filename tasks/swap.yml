@@ -1,8 +1,8 @@
 ---
 - name: swap - calculate difference between existing and configured size
   set_fact:
-    common_swap_check_diff: "{{ (common_swap_size | float - ansible_swaptotal_mb) | abs }}"
-    common_swap_check_minimum_diff: "{{ common_swap_size | float * 0.10 | round(1, 'ceil') }}"
+    common_swap_check_diff: "{{ (common_swap_size | float - ansible_swaptotal_mb) | abs | int }}"
+    common_swap_check_minimum_diff: "{{ common_swap_size | float * 0.10 | round(1, 'ceil') | int }}"
 
 - name: swap - check if it is necessary to recreate it
   set_fact:
