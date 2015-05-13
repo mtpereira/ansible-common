@@ -1,0 +1,26 @@
+---
+- name: upgrade - Update cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: upgrade - Dist-upgrade system
+  apt:
+    upgrade: dist
+  register: common_upgrade_check
+
+- name: upgrade - Reboot if packages were upgraded
+  command: shutdown -r now 'Ansible - Reboot for upgrade.'
+  when: common_upgrade_reboot and common_upgrade_check | changed
+
+- name: upgrade - Wait for reboot
+  local_action:
+    module: wait_for
+    host: "{{ ansible_ssh_host }}"
+    port: "{{ ansible_ssh_port }}"
+    delay: 30
+    timeout: 600
+    state: started
+  sudo: no
+  when: common_upgrade_reboot and common_upgrade_check | changed
+

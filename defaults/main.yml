@@ -15,6 +15,10 @@ common_swap_size: "{{ ansible_memtotal_mb }}"
 common_swap_fstab: yes
 common_swap_path: "/swap"
 
+# tasks/upgrade.yml
+common_upgrade: no
+common_upgrade_reboot: yes
+
 # tasks/pkg-*.yml
 common_pkg_state: "installed"
 common_pkg_purge: no

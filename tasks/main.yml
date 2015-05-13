@@ -7,6 +7,9 @@
 - include: repo-rpm.yml tags=common_rpm,common_repository
   when: ansible_os_family == "RedHat"
 
+- include: upgrade.yml tags=common_upgrade
+  when: ansible_os_family == "Debian" and common_upgrade
+
 - include: pkg-deb.yml tags=common_deb,common_packages
   when: ansible_os_family == "Debian"
 
