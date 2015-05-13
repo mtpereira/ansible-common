@@ -11,6 +11,7 @@ At the moment, it provides means to:
 
 * Install ansible dependencies;
 * Add custom Debian or EL repositories;
+* Upgrades Debian systems;
 * Install a list of packages;
 * Set hostname;
 * Configure timezone;
@@ -63,6 +64,11 @@ Packages:
 * `common_pkg_list_rpm`: (Optional) List of packages to be installed in a RedHat server. It only takes effect when set.
 * `common_pkg_remove_list_rpm`: (Optional) List of packages to be installed in a RedHat server. It only takes effect when set.
 * `common_pkg_purge`: (Optional) Whether to purge or not packages of `common_pkg_remove_list_deb` in a Debian server. Defaults to `no`.
+
+Upgrade:
+
+* `common_upgrade`: Whether to upgrade or not the system (`dist-upgrade`) in a Debian host. Defaults to `no`.
+* `common_upgrade_reboot`: Whether to reboot or not the system after a upgrade. Defaults to `yes`.
 
 Hostname:
 
