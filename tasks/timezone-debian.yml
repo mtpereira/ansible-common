@@ -1,11 +1,14 @@
 ---
+
 - name: timezone - configure /etc/timezone
-  copy:
-    content: "{{ common_timezone }}"
+  lineinfile:
     dest: /etc/timezone
+    regexp: "^.+$"
+    line: "{{ common_timezone }}"
     owner: root
     group: root
     mode: 0644
+    state: present
   register: common_timezone_config
 
 - name: timezone - reconfigure tzdata
