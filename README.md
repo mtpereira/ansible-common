@@ -77,7 +77,7 @@ Hostname:
 
 Timezone:
 
-* `common_timezone`: Timezone to be configured. Defaults to `Etc/UTC`.
+* `common_timezone`: Timezone to be configured. Defaults to `Etc/UTC`. Note: Checkout https://github.com/ansible/ansible/issues/5715 for an explanation on the weird regex_replace on this variable on task `timezone - configure /etc/timezone`.
 
 NTP:
 
