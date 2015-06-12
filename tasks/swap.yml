@@ -8,6 +8,21 @@
   set_fact:
     common_swap_check_recreate: "{{ common_swap_check_diff > common_swap_check_minimum_diff }}"
 
+- name: swap - remove current swaps from fstab
+  lineinfile:
+    dest: /etc/fstab
+    regexp: '^/[\S]+\s+none\s+swap '
+    state: absent
+  when: common_swap_remove_current and
+        common_swap_check_recreate | bool
+  sudo: yes
+
+- name: swap - disable swap
+  command: swapoff --all
+  ignore_errors: yes
+  when: common_swap_check_recreate | bool
+  sudo: yes
+
 - name: swap - create path
   file:
     dest: "{{ common_swap_path }}"
@@ -15,12 +30,6 @@
     group: root
     mode: 0600
     state: directory
-  when: common_swap_check_recreate | bool
-  sudo: yes
-
-- name: swap - disable swap
-  command: swapoff --all
-  ignore_errors: yes
   when: common_swap_check_recreate | bool
   sudo: yes
 
@@ -44,7 +53,7 @@
   sudo: yes
 
 - name: swap - swap on
-  command: swapon --all
+  command: swapon {{ common_swap_path }}/swap.block
   when: common_swap_check_recreate | bool
   sudo: yes
 

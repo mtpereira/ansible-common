@@ -109,7 +109,7 @@ The check is not for the exact same size because the actual mounted size partiti
 Testing
 -------
 
-For testing purposes, a Vagrantfile was added. Simply run ```vagrant up``` in your working copy dir to get a Debian host up and provisioned with ```ansible-common.yml``` playbook. **At the moment there are no tests defined for EL-based systems!**
+For testing purposes, a Vagrantfile was added. Simply run ```vagrant up``` in your working copy dir to get a Debian host up and provisioned with ```test.yml``` playbook. **At the moment there are no tests defined for EL-based systems!**
 
 License
 -------
