@@ -13,7 +13,8 @@
     dest: /etc/fstab
     regexp: '^/[\S]+\s+none\s+swap '
     state: absent
-  when: common_swap_remove_current
+  when: common_swap_remove_current and
+        common_swap_check_recreate | bool
   sudo: yes
 
 - name: swap - disable swap
