@@ -5,10 +5,10 @@
   vars_files:
     - vars/test.yml
 
-  handlers:
-    - include: handlers/main.yml
+  roles:
+    - .
 
-  tasks:
+  post_tasks:
     - name: test - umount swap if present
       command: swapoff -a
       when: ansible_swaptotal_mb != 0
