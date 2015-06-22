@@ -6,3 +6,5 @@
   - python-apt
   - python-pycurl
   - aptitude
+  - apt-transport-https
+
