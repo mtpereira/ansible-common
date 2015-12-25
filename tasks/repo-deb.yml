@@ -1,15 +1,26 @@
 ---
 - name: repo - Add custom repositories in Debian
-  apt_repository: repo="deb {{ item.url }} {{ item.codename }} {{ item.components }}" state=present update_cache=yes
+  apt_repository:
+    repo: "deb {{ item.url }} {{ item.codename }} {{ item.components }}"
+    state: present
   with_items: common_repo_deb
   when: common_repo_deb is defined and item.url is defined
 
 - name: repo - Add custom PPA repository in Ubuntu
-  apt_repository: repo="{{ item.repo }}"
+  apt_repository:
+    repo: "{{ item.repo }}"
   with_items: common_repo_ppa
   when: common_repo_ppa is defined and ansible_distribution == 'Ubuntu'
 
 - name: repo - Add custom repositories keys in Debian
-  apt_key: url={{ item.url }} id={{ item.id }} state=present
+  apt_key:
+    url: "{{ item.url }}"
+    id: "{{ item.id | default(omit) }}"
+    state: present
   with_items: common_repo_deb_keys
   when: common_repo_deb_keys is defined
+
+- name: repo - Update cache
+  apt:
+    update_cache: yes
+
