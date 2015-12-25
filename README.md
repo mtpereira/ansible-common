@@ -42,7 +42,8 @@ Repositories management:
 ```
 * `common_repo_deb_keys`: (Optional) List of Debian repository keys to be added. It only takes effect when set. Format is:
 ```
-- { url: 'https://ftp-master.debian.org/keys/archive-key-6.0.asc', key: '473041FA' }
+- { url: 'https://ftp-master.debian.org/keys/archive-key-6.0.asc', id: '473041FA' }
+- { url: 'https://dl.google.com/linux/linux_signing_key.pub' }
 ```
 
 * `common_repo_rpm`: (Optional) List of EL repositories to be added. Repositories are added by copying the repo description file from local to remote. Format is:

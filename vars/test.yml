@@ -39,12 +39,16 @@ common_pkg_list_rpm:
 
 common_pkg_purge: yes
 common_repo_deb:
-  - url: 'http://ftp.rnl.ist.utl.pt/pub/debian'
+  - url: "http://ftp.rnl.ist.utl.pt/pub/debian"
     codename: "wheezy"
-    components: 'main'
+    components: "main"
+  - url: "http://dl.google.com/linux/chrome/deb/"
+    codename: "stable"
+    components: "main"
 common_repo_deb_keys:
   - url: 'https://ftp-master.debian.org/keys/archive-key-6.0.asc'
     id: '473041FA'
+  - url: 'https://dl.google.com/linux/linux_signing_key.pub'
 common_pkg_remove_list_deb:
   - exim4
 common_swap_size: 50
