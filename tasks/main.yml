@@ -1,40 +1,53 @@
 ---
-- include: bootstrap.yml tags=common_bootstrap
+- include: bootstrap.yml
+  tags: common_bootstrap
 
-- include: repo-deb.yml tags=common_deb,common_repository
+- include: repo-deb.yml
   when: ansible_os_family == "Debian"
+  tags: common_repository
 
-- include: repo-rpm.yml tags=common_rpm,common_repository
+- include: repo-rpm.yml
   when: ansible_os_family == "RedHat"
+  tags: common_repository
 
-- include: upgrade.yml tags=common_upgrade
+- include: upgrade.yml
   when: ansible_os_family == "Debian" and common_upgrade
+  tags: common_upgrade
 
-- include: pkg-deb.yml tags=common_deb,common_packages
+- include: pkg-deb.yml
   when: ansible_os_family == "Debian"
+  tags: common_packages
 
-- include: pkg-rpm.yml tags=common_rpm,common_packages
+- include: pkg-rpm.yml
   when: ansible_os_family == "RedHat"
+  tags: common_packages
 
-- include: hostname.yml tags=common_hostname
+- include: hostname.yml
+  tags: common_hostname
 
-- include: timezone-debian.yml tags=common_deb,common_timezone
+- include: timezone-debian.yml
   when: ansible_os_family == "Debian"
+  tags: common_timezone
 
-- include: timezone-redhat.yml tags=common_rpm,common_timezone
+- include: timezone-redhat.yml
   when: ansible_os_family == "RedHat"
+  tags: common_timezone
 
-- include: ntp-deb.yml tags=common_ntp,common_deb
+- include: ntp-deb.yml
   when: ansible_os_family == "Debian"
+  tags: common_ntp
 
-- include: ntp-rpm.yml tags=common_ntp,common_rpm
+- include: ntp-rpm.yml
   when: ansible_os_family == "RedHat"
+  tags: common_ntp
 
-- include: filesystems.yml tags=common_filesystems
+- include: filesystems.yml
   when: common_filesystems is defined and common_filesystems != []
+  tags: common_filesystems
 
-- include: swap.yml tags=common_swap
+- include: swap.yml
   when: common_swap
+  tags: common_swap
 
 - meta: flush_handlers
 
