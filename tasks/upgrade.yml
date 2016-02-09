@@ -21,6 +21,6 @@
     delay: 30
     timeout: 600
     state: started
-  sudo: no
+  become: no
   when: common_upgrade_reboot and common_upgrade_check | changed
 

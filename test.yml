@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  sudo: yes
+  become: yes
 
   vars_files:
     - vars/test.yml
@@ -13,14 +13,14 @@
       command: swapoff -a
       when: ansible_swaptotal_mb != 0
       register: common_test_swapoff
-      sudo: yes
+      become: yes
 
     - name: test - remove swap if present
       lineinfile:
         dest: /etc/fstab
         line: "/dev/mapper/packer--virtualbox-swap_1 none            swap    sw              0       0"
         state: absent
-      sudo: yes
+      become: yes
 
     - name: test - regather facts after swap off
       action: setup

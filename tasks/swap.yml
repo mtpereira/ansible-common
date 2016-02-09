@@ -15,13 +15,13 @@
     state: absent
   when: common_swap_remove_current and
         common_swap_check_recreate | bool
-  sudo: yes
+  become: yes
 
 - name: swap - disable swap
   command: swapoff --all
   ignore_errors: yes
   when: common_swap_check_recreate | bool
-  sudo: yes
+  become: yes
 
 - name: swap - create path
   file:
@@ -31,17 +31,17 @@
     mode: 0600
     state: directory
   when: common_swap_check_recreate | bool
-  sudo: yes
+  become: yes
 
 - name: swap - create swap file
   command: dd if=/dev/zero of={{ common_swap_path }}/swap.block bs=1M count={{ common_swap_size }}
   when: common_swap_check_recreate | bool
-  sudo: yes
+  become: yes
 
 - name: swap - make swap
   command: mkswap {{ common_swap_path }}/swap.block
   when: common_swap_check_recreate | bool
-  sudo: yes
+  become: yes
 
 - name: swap - add to fstab
   mount:
@@ -50,10 +50,10 @@
     fstype: swap
     state: present
   when: common_swap_check_recreate | bool and common_swap_fstab
-  sudo: yes
+  become: yes
 
 - name: swap - swap on
   command: swapon {{ common_swap_path }}/swap.block
   when: common_swap_check_recreate | bool
-  sudo: yes
+  become: yes
 
