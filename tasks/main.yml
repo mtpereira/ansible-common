@@ -2,43 +2,23 @@
 - include: bootstrap.yml
   tags: common_bootstrap
 
-- include: repo-deb.yml
-  when: ansible_os_family == "Debian"
-  tags: common_repository
-
-- include: repo-rpm.yml
-  when: ansible_os_family == "RedHat"
+- include: repo.yml
   tags: common_repository
 
 - include: upgrade.yml
-  when: ansible_os_family == "Debian" and common_upgrade
+  when: common_upgrade
   tags: common_upgrade
 
-- include: pkg-deb.yml
-  when: ansible_os_family == "Debian"
-  tags: common_packages
-
-- include: pkg-rpm.yml
-  when: ansible_os_family == "RedHat"
+- include: pkg.yml
   tags: common_packages
 
 - include: hostname.yml
   tags: common_hostname
 
-- include: timezone-debian.yml
-  when: ansible_os_family == "Debian"
+- include: timezone.yml
   tags: common_timezone
 
-- include: timezone-redhat.yml
-  when: ansible_os_family == "RedHat"
-  tags: common_timezone
-
-- include: ntp-deb.yml
-  when: ansible_os_family == "Debian"
-  tags: common_ntp
-
-- include: ntp-rpm.yml
-  when: ansible_os_family == "RedHat"
+- include: ntp.yml
   tags: common_ntp
 
 - include: filesystems.yml
