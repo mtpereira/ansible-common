@@ -1,36 +1,45 @@
 ---
-- include: bootstrap.yml
+- name: main - include bootstrap
+  include: bootstrap.yml
   tags: common_bootstrap
 
-- include: repo.yml
+- name: main - include repo
+  include: repo.yml
   tags: common_repository
 
-- include: upgrade.yml
+- name: main - include upgrade
+  include: upgrade.yml
   when: common_upgrade
   tags: common_upgrade
 
-- include: pkg.yml
+- name: main - include pkg
+  include: pkg.yml
   tags: common_packages
 
-- include: hostname.yml
+- name: main - include hostname
+  include: hostname.yml
   tags: common_hostname
 
-- include: timezone.yml
+- name: main - include timezone
+  include: timezone.yml
   tags: common_timezone
 
-- include: ntp.yml
+- name: main - include ntp
+  include: ntp.yml
   tags: common_ntp
 
-- include: filesystems.yml
+- name: main - include filesystems
+  include: filesystems.yml
   when: common_filesystems is defined and common_filesystems != []
   tags: common_filesystems
 
-- include: swap.yml
+- name: main - include swap
+  include: swap.yml
   when: common_swap
   tags: common_swap
 
 - meta: flush_handlers
 
-- name: main - Regather facts
+- name: main - regather facts
   action: setup
 
