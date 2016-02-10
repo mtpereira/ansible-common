@@ -1,7 +1,7 @@
 Common
 ========
 
-Ansible role for host basic and common configuration: this role should contain essencial general configuration that any host should have, regardless of its function.
+Ansible role for host basic and common configuration: this role contains essencial general configuration for any Debian-based host.
 
 This role is designed to be used on Debian-based systems. **Support for EL-based distros as been dropped on 3.0 !**
 
