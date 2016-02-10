@@ -27,17 +27,6 @@ common_pkg_list_deb:
   - vim-nox
   - tcpdump
   - netcat-traditional
-  - screen
-  - htop
-  - tmux
-  - sysv-rc-conf
-  - git
-
-common_pkg_list_rpm:
-  - vim-enhanced
-  - tcpdump
-  - nc
-  - screen
   - htop
   - tmux
   - git
@@ -49,11 +38,4 @@ common_pkg_list_rpm:
 #
 #common_repo_deb_keys:
 #  - { url: 'https://ftp-master.debian.org/keys/archive-key-6.0.asc', id: '473041FA' }
-#
-# for rpm repos, put your .repo in files/
-# common_repo_rpm:
-#   - etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
-#
-# common_repo_rpm_keys:
-#   - http://apt.sw.be/RPM-GPG-KEY.dag.txt
-#   - /path/to/key.gpg
+

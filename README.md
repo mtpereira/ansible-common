@@ -1,26 +1,23 @@
 Common
 ========
 
-Ansible role for host basic and common configuration: this role should contain essencial general configuration that any host should have, regardless of its function.
+Ansible role for host basic and common configuration: this role contains essencial general configuration for any Debian-based host.
 
-This role is designed to be used in either Debian- or EL-based systems **but, at the moment, it has only been tested in Debian!**
+This role is designed to be used on Debian-based systems. **Support for EL-based distros as been dropped on 3.0 !**
 
 There were made no assumptions regarding the user that is running these tasks.
 
 At the moment, it provides means to:
 
 * Install ansible dependencies;
-* Add custom Debian or EL repositories;
-* Upgrades Debian systems;
+* Add custom repositories;
+* Upgrades the system's packages;
 * Install a list of packages;
 * Set hostname;
 * Configure timezone;
 * Configure NTP;
-* Add swap file if there's none mounted.
-
-TODO:
-
-* Test on Centos.
+* Add a swap file if there's none mounted;
+* Adds custom mount points and configures their filesystems.
 
 Requirements
 ------------
@@ -46,24 +43,11 @@ Repositories management:
 - { url: 'https://dl.google.com/linux/linux_signing_key.pub' }
 ```
 
-* `common_repo_rpm`: (Optional) List of EL repositories to be added. Repositories are added by copying the repo description file from local to remote. Format is:
-```- etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6```
-
-* `common_repo_rpm_keys`: (Optional) List of EL repository keys to be added. It only takes effect when set. Format is:
-```
-# add by URL
-- http://apt.sw.be/RPM-GPG-KEY.dag.txt
-# add by local file
-- /path/to/key.gpg
-```
-
 Packages:
 
 * `common_pkg_state`: Specifies if this role will garantee that the packages are installed or installed and updated. Possible values: `installed` and `latest`. Defaults to `installed`. **Applies to all action that install packages in this role!**
 * `common_pkg_list_deb`: (Optional) List of packages to be installed in a Debian server. It only takes effect when set.
 * `common_pkg_remove_list_deb`: (Optional) List of packages to be removed in a Debian server. It only takes effect when set.
-* `common_pkg_list_rpm`: (Optional) List of packages to be installed in a RedHat server. It only takes effect when set.
-* `common_pkg_remove_list_rpm`: (Optional) List of packages to be installed in a RedHat server. It only takes effect when set.
 * `common_pkg_purge`: (Optional) Whether to purge or not packages of `common_pkg_remove_list_deb` in a Debian server. Defaults to `no`.
 
 Upgrade:
@@ -110,7 +94,7 @@ The check is not for the exact same size because the actual mounted size partiti
 Testing
 -------
 
-For testing purposes, a Vagrantfile was added. Simply run ```vagrant up``` in your working copy dir to get a Debian host up and provisioned with ```test.yml``` playbook. **At the moment there are no tests defined for EL-based systems!**
+For testing purposes, a Vagrantfile was added. Simply run ```vagrant up``` in your working copy dir to get a Debian host up and provisioned with ```test.yml``` playbook.
 
 License
 -------
@@ -122,4 +106,4 @@ Author Information
 
 [GitHub project page](https://github.com/mtpereira/ansible-common)
 
-[Manuel Tiago Pereira](http://mtpereira.github.io)
+[Manuel Tiago Pereira](https://mtpereira.com)
