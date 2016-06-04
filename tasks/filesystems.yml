@@ -4,7 +4,7 @@
     fstype: "{{ item.type }}"
     dev: "{{ item.device }}"
     opts: "{{ item.opts | default(omit) }}"
-  with_items: common_filesystems
+  with_items: "{{ common_filesystems }}"
   become: yes
 
 - name: filesystems - mount and set on fstab
@@ -15,6 +15,6 @@
     opts: "{{ item.mount_opts | default(omit) }}"
     passno: "{{ item.passno | default(omit) }}"
     state: mounted
-  with_items: common_filesystems
+  with_items: "{{ common_filesystems }}"
   become: yes
 

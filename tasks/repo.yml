@@ -3,7 +3,7 @@
   apt_repository:
     repo: "deb {{ item.url }} {{ item.codename }} {{ item.components }}"
     state: present
-  with_items: common_repo_deb
+  with_items: "{{ common_repo_deb }}"
   when: common_repo_deb is defined and item.url is defined
 
 - name: repo - Add custom PPA repository in Ubuntu
@@ -17,7 +17,7 @@
     url: "{{ item.url }}"
     id: "{{ item.id | default(omit) }}"
     state: present
-  with_items: common_repo_deb_keys
+  with_items: "{{ common_repo_deb_keys }}"
   when: common_repo_deb_keys is defined
 
 - name: repo - Update cache

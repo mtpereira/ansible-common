@@ -1,10 +1,14 @@
 ---
 - name: bootstrap - install ansible dependencies
-  apt: pkg={{ item }} state={{ common_pkg_state }} update_cache=yes cache_valid_time=3600
+  apt:
+    pkg: "{{ item }}"
+    state: "{{ common_pkg_state }}"
+    update_cache: yes
+    cache_valid_time: 3600
   with_items:
-  - lsb-release
-  - python-apt
-  - python-pycurl
-  - aptitude
-  - apt-transport-https
+    - "{{ lsb-release }}"
+    - "{{ python-apt }}"
+    - "{{ python-pycurl }}"
+    - "{{ aptitude }}"
+    - "{{ apt-transport-https }}"
 
